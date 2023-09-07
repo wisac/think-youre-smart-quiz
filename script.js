@@ -75,6 +75,7 @@ let score = 0;
 
 optionBox.addEventListener("click", function (e) {
     if (e.target.classList.contains("option-btn")) {
+        disableOptions();
         let selectedOption = e.target;
         checkAnswer(selectedOption);
         showNextBtn();
@@ -82,14 +83,55 @@ optionBox.addEventListener("click", function (e) {
     }
 });
 
+function enableOptions() {
+    allOptionsBtn.forEach((btn) => {
+        btn.disabled = false;
+    });
+}
+
+function disableOptions() {
+    allOptionsBtn.forEach((btn) => {
+        btn.disabled = true;
+    });
+}
+
+////// Go next
 nextBtn.addEventListener("click", () => {
-    updateQuiz();
+    
+    if (currentQuestionIndex < questions.length - 1) {
+        enableOptions();
+        updateQuiz();
+    }
+        
+    else {
+        showResults();
+    }
+
+
 })
 
 function showNextBtn() {
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.textContent = "Finish";
+        // nextBtn.style.display = "inline-block";
+    }
+    else if(currentQuestionIndex < questions.length - 1) {
+        nextBtn.textContent = "Next";
     nextBtn.style.display = "inline-block";
+    }
+    else {
+       console.log("test")
+    }
 }
 
+////////////Show results
+function showResults() {
+    question.textContent = `You scored ${score} / ${questions.length}`;
+    nextBtn.textContent = "Try again";
+    optionBox.style.display = "none";
+
+    
+}
 function updateQuiz() {
     currentQuestionIndex += 1;
     allOptionsBtn.forEach((btn) => {
@@ -115,6 +157,7 @@ function displayQuestion() {
     //Display options for question
     allOptionsBtn.forEach((btn, i) => {
         btn.textContent = currentQuestion.answers.at(i).option;
+        btn.style.scale = "1";
     });
 }
 
@@ -130,7 +173,6 @@ function checkAnswer(chosenOption) {
         chosenOption.classList.add("correct");
     }
     else {
-        chosenOption.classList.add("wrong");
         const correctOptionIndex = () => {
             let answerIndex = -1;
 
@@ -144,7 +186,11 @@ function checkAnswer(chosenOption) {
 
         const correctIndex = correctOptionIndex();
         allOptionsBtn[correctIndex].classList.add("correct");
+        chosenOption.classList.add("wrong");
+
     }
+    chosenOption.style.scale = "1.04";
+
 }
 
 //add even listener to all buttons
@@ -153,6 +199,7 @@ function checkAnswer(chosenOption) {
 //When button is clicked.
 //highlight the answer
 //show next button
+//make all buttons unclickable
 //check to see if its the correct button
 // if correct
 // update the score

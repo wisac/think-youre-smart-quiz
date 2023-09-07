@@ -53,11 +53,12 @@ h2 {
     transition: background, translate, 0.2s ease-in-out;
 }
 
-.option-btn:hover {
+.option-btn:hover:enabled {
     cursor: pointer;
     background: rgba(255, 255, 255, 0.4);
     transform: scale(1.02);
 }
+
 
 .next-box {
     text-align: center;
