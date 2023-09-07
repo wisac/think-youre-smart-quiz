@@ -1,13 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+
+:root {
+    --gradient-background: linear-gradient(to top left, #1d442c, #88b263);
+    --color-primary: #044e33;
+    --color-secondary: rgba(0, 17, 34, 0.111);
+}
+
 * {
     margin: 0;
 } 
 
 body {
     font-family: "Poppins", sans-serif;
-    background: #31441d;
-    color: #033825;
+    background: var(--gradient-background);
+    color: var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +38,7 @@ h2 {
     margin-right: auto;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 
 }
 
@@ -42,13 +49,13 @@ h2 {
 
 #questionNumber {
     font-size: 1rem;
-    background-color: rgba(0, 17, 34, 0.111);
+    background-color: var(--color-secondary);
     border-radius: 5px;
     padding: 10px;
 }
 
 .question-box {
-    border-top: 4px solid #0123;
+    border-top: 4px solid var(--color-secondary);
     margin-top: 20px;
     padding-top: 20px;
     border-radius: 5px;
@@ -61,7 +68,7 @@ h2 {
 }
 
 .option-btn {
-    background: rgba(219, 239, 222, 0.383);
+    background: var(--color-secondary);
     border: none;
     box-shadow: 1px 1px 3px 1px rgba(86, 110, 82, 0.516);
     text-align: left;
@@ -76,8 +83,9 @@ h2 {
 
 .option-btn:hover:enabled {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.4);
+    background-color: var(--color-primary);
     transform: scale(1.02);
+    color: #fff;
 }
 
 
@@ -91,7 +99,7 @@ h2 {
     height: 40px;
     border-radius: 5px;
     border: none;
-    background: #033825;
+    background: var(--color-primary);
     color: #fff;
     transition: background, color, scale 0.3s ease-in-out;
     display: none;
@@ -100,9 +108,13 @@ h2 {
 
 .next-btn:hover {
     background: #ffffffaa;
-    border: 2px solid #033825dc;
-    color: #033825;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
     scale: 1.02;
+}
+
+.next-btn:active {
+    scale: 0.8;
 }
 
 .correct {
