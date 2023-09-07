@@ -101,6 +101,11 @@ nextBtn.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length - 1) {
         enableOptions();
         updateQuiz();
+        nextBtn.style.display = "none";
+
+    }
+    else if (nextBtn.textContent == "Try again") {
+        resetQuiz();
     }
         
     else {
@@ -110,17 +115,17 @@ nextBtn.addEventListener("click", () => {
 
 })
 
+
+
+///////////////Show next
 function showNextBtn() {
-    if (currentQuestionIndex === questions.length - 1) {
+    if (currentQuestionIndex == questions.length - 1) {
         nextBtn.textContent = "Finish";
-        // nextBtn.style.display = "inline-block";
+        nextBtn.style.display = "inline-block";
     }
-    else if(currentQuestionIndex < questions.length - 1) {
+    else if(currentQuestionIndex < questions.length - 1 && currentQuestionIndex >= 0){
         nextBtn.textContent = "Next";
     nextBtn.style.display = "inline-block";
-    }
-    else {
-       console.log("test")
     }
 }
 
@@ -134,21 +139,36 @@ function showResults() {
 }
 function updateQuiz() {
     currentQuestionIndex += 1;
+    removeOptionColors();
+    displayQuestion();
+
+};
+
+function removeOptionColors() {
     allOptionsBtn.forEach((btn) => {
         btn.classList.remove("correct");
         btn.classList.remove("wrong");
     })
-    displayQuestion();
-};
+}
 
 /////////Quiz Starter
 function quizStart() {
     currentQuestionIndex = 0;
     score = 0;
     nextBtn.textContent = "Next";
+    nextBtn.style.display = "none";
     displayQuestion();
 }
 
+//////////quiz reset
+function resetQuiz() {
+    removeOptionColors();
+    enableOptions();
+    optionBox.style.display = "flex";
+    quizStart();
+}
+
+/////////Display Question
 function displayQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1;
@@ -215,3 +235,4 @@ function checkAnswer(chosenOption) {
 //when submit button is clicked.
 //show final score and leaderboard of all 5 highscores
 //show try again button
+
