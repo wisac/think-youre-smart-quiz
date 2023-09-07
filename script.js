@@ -33,7 +33,7 @@ const questions = [
             { option: "Your cellphone", correct: true },
             { option: "Your mirror", correct: false },
             { option: "Your clock", correct: false },
-            { option: "The internet", correct: false }
+            { option: "The internet", correct: false },
         ],
     },
     {
@@ -42,7 +42,7 @@ const questions = [
             { option: "A monkey and a donkey", correct: true },
             { option: "A spoon and a fork", correct: false },
             { option: "A Passport and a PIN", correct: false },
-            { option: "A master key and a slave key",correct: false }
+            { option: "A master key and a slave key", correct: false },
         ],
     },
     {
@@ -52,7 +52,7 @@ const questions = [
             { option: "It's a cargo ship with no passengers", correct: false },
             { option: "They are all invisible", correct: false },
             { option: "The boat is not moving", correct: false },
-            { option: "Everyone on board is married", correct: true }
+            { option: "Everyone on board is married", correct: true },
         ],
     },
     {
@@ -73,43 +73,57 @@ const question = document.querySelector("#question");
 let currentQuestionIndex = 0;
 let score = 0;
 
-
-
 optionBox.addEventListener("click", function (e) {
     if (e.target.classList.contains("option-btn")) {
         let selectedOption = e.target;
         checkAnswer(selectedOption);
-        updateScore();
-        nextQuestion();
+        showNextBtn();
+
     }
 });
 
+nextBtn.addEventListener("click", () => {
+    updateQuiz();
+})
+
+function showNextBtn() {
+    nextBtn.style.display = "inline-block";
+}
+
+function updateQuiz() {
+    currentQuestionIndex += 1;
+    allOptionsBtn.forEach((btn) => {
+        btn.classList.remove("correct");
+        btn.classList.remove("wrong");
+    })
+    displayQuestion();
+};
+
+/////////Quiz Starter
 function quizStart() {
     currentQuestionIndex = 0;
     score = 0;
     nextBtn.textContent = "Next";
-    nextQuestion();
+    displayQuestion();
 }
 
-function nextQuestion() {
+function displayQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1;
-    question.textContent = questionNum + ". " + currentQuestion.question;
-    
-    allOptionsBtn.forEach((btn,i) => {
+    question.textContent = questionNum + ". " + currentQuestion.question; //Question number
+
+    //Display options for question
+    allOptionsBtn.forEach((btn, i) => {
         btn.textContent = currentQuestion.answers.at(i).option;
-        // console.log(btn.textContent);
-    })
-
-
+    });
 }
 
 quizStart();
-// nextQuestion();
+// displayQuestion();
 
 function checkAnswer(chosenOption) {
     let optionNum = Number(chosenOption.getAttribute("data-value"));
-    
+
     if (questions[currentQuestionIndex].answers[optionNum - 1].correct) {
         //update score and set option color to correct
         score++;
@@ -117,9 +131,20 @@ function checkAnswer(chosenOption) {
     }
     else {
         chosenOption.classList.add("wrong");
-        
+        const correctOptionIndex = () => {
+            let answerIndex = -1;
+
+            questions[currentQuestionIndex].answers.forEach((answer, i) => {
+                if (answer.correct) {
+                    answerIndex = i;
+                }
+            });
+            return answerIndex;
+        };
+
+        const correctIndex = correctOptionIndex();
+        allOptionsBtn[correctIndex].classList.add("correct");
     }
-    
 }
 
 //add even listener to all buttons
