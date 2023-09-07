@@ -1,3 +1,4 @@
+
 # Think You're Smart? - Quiz Application
 
 Are you ready to put your knowledge to the test and prove that you're truly smart? Dive into the "Think You're Smart?" quiz application, where you'll face a series of thought-provoking questions that will challenge your wit and wisdom.
@@ -10,7 +11,6 @@ Are you ready to put your knowledge to the test and prove that you're truly smar
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Quiz Overview
 
@@ -54,7 +54,7 @@ To embark on your journey as a quiz champion:
 1. Clone this repository to your local machine using Git.
 
 ```bash
-git clone https://github.com/your-username/think-youre-smart-quiz.git
+git clone https://github.com/wisac/think-youre-smart-quiz.git
 ```
 
 2. Open the `index.html` file in your web browser.
@@ -64,10 +64,6 @@ git clone https://github.com/your-username/think-youre-smart-quiz.git
 ## Contributing
 
 Feeling inspired to add your own tricky questions or exciting features to the quiz? Contributions to "Think You're Smart?" are welcomed with open arms! Feel free to submit pull requests and make this quiz even more delightful.
-
-## License
-
-"Think You're Smart?" is an open-source project available under the [MIT License](LICENSE).
 
 ---
 

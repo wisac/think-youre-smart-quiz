@@ -67,6 +67,36 @@ const questions = [
             { option: "A secret", correct: false },
         ],
     },
+    {
+        question:
+            "A cowboy rode into town on Friday. He stayed in town for three days and rode out on Friday. How is that possible?",
+        answers: [
+            { option: "He traveled through a time loop", correct: false },
+            { option: "His horse is named Friday", correct: true },
+            { option: "He spent two days", correct: false },
+            { option: "He came on Sunday", correct: false },
+        ],
+    },
+    {
+        question:
+            "If you had only one match and entered a dark room containing an oil lamp, some kindling wood, and a newspaper, which would you light first?",
+        answers: [
+            { option: "The oil lamp", correct: false },
+            { option: "The match", correct: true },
+            { option: "The newspaper", correct: false },
+            { option: "The kindling wood", correct: false },
+        ],
+    },
+    {
+        question:
+            "What's greater than God and more evil than the devil. Rich people want it, poor people have it. And if you eat it, you'll die?",
+        answers: [
+            { option: "An ellipse", correct: false },
+            { option: "An exclamation", correct: false },
+            { option: "An envelope", correct: true },
+            { option: "An embrace", correct: false },
+        ],
+    },
 ];
 const allOptionsBtn = document.querySelectorAll(".option-btn");
 const optionBox = document.querySelector(".option-box");
@@ -93,7 +123,7 @@ nextBtn.addEventListener("click", () => {
         updateQuiz();
         nextBtn.style.display = "none";
     }
-    else if (nextBtn.textContent == "Try again") {
+    else if (nextBtn.textContent == "Play again") {
         resetQuiz();
     }
     else {
@@ -133,10 +163,19 @@ function showNextBtn() {
 ////////////Show results after quiz ends
 function showResults() {
     question.textContent = `You scored ${score} / ${questions.length}`;
-    nextBtn.textContent = "Try again";
+    nextBtn.textContent = "Play again";
     optionBox.style.display = "none";
 
     questionIndicator.textContent = "🏁";
+}
+
+
+////////////////Remove correct and wrong option colors from all buttons
+function removeOptionColors() {
+    allOptionsBtn.forEach((btn) => {
+        btn.classList.remove("correct");
+        btn.classList.remove("wrong");
+    });
 }
 
 ////////////Update quiz and show next question
@@ -146,13 +185,6 @@ function updateQuiz() {
     displayQuestion();
 }
 
-////////////////Remove correct and wrong option colors from all buttons
-function removeOptionColors() {
-    allOptionsBtn.forEach((btn) => {
-        btn.classList.remove("correct");
-        btn.classList.remove("wrong");
-    });
-}
 
 ////////////////Quiz Starter
 function quizStart() {
@@ -175,7 +207,7 @@ function resetQuiz() {
 function displayQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1;
-    question.textContent =  currentQuestion.question; //Question number
+    question.textContent = currentQuestion.question; //Question number
 
     //Display options for question
     allOptionsBtn.forEach((btn, i) => {
