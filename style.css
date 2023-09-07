@@ -53,17 +53,24 @@ h2 {
     transition: background, translate, 0.2s ease-in-out;
 }
 
-.option-btn {
-    
-}
-
 .option-btn:hover {
     cursor: pointer;
-    background: rgba(158, 170, 160, 0.4);
-    transform: scale(1.02) ;
+    background: rgba(149, 164, 151, 0.4);
+    transform: scale(1.02);
 }
 
-
+.next-box {
+    text-align: center;
+    margin-top: 10px;
+}
+.next-btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background: #033825;
+    color: #fff;
+}
 
 .correct {
     background: rgba(98, 250, 121, 0.494);
