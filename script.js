@@ -1,8 +1,4 @@
 "use strict";
-const allOptionsBtn = document.querySelectorAll(".option-btn");
-const optionBox = document.querySelector(".option-box");
-const nextBtn = document.querySelector(".next-btn");
-
 const questions = [
     {
         question: "What are two things you can never eat for breakfast?",
@@ -70,6 +66,14 @@ const questions = [
         ],
     },
 ];
+const allOptionsBtn = document.querySelectorAll(".option-btn");
+const optionBox = document.querySelector(".option-box");
+const nextBtn = document.querySelector(".next-btn");
+const question = document.querySelector("#question");
+let currentQuestionIndex = 0;
+let score = 0;
+
+
 
 optionBox.addEventListener("click", function (e) {
     if (e.target.classList.contains("option-btn")) {
@@ -80,7 +84,43 @@ optionBox.addEventListener("click", function (e) {
     }
 });
 
-function checkAnswer(option) {}
+function quizStart() {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.textContent = "Next";
+    nextQuestion();
+}
+
+function nextQuestion() {
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNum = currentQuestionIndex + 1;
+    question.textContent = questionNum + ". " + currentQuestion.question;
+    
+    allOptionsBtn.forEach((btn,i) => {
+        btn.textContent = currentQuestion.answers.at(i).option;
+        // console.log(btn.textContent);
+    })
+
+
+}
+
+quizStart();
+// nextQuestion();
+
+function checkAnswer(chosenOption) {
+    let optionNum = Number(chosenOption.getAttribute("data-value"));
+    
+    if (questions[currentQuestionIndex].answers[optionNum - 1].correct) {
+        //update score and set option color to correct
+        score++;
+        chosenOption.classList.add("correct");
+    }
+    else {
+        chosenOption.classList.add("wrong");
+        
+    }
+    
+}
 
 //add even listener to all buttons
 //delegate the even listener by adding the listener to the buttons container
