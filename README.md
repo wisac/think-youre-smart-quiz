@@ -34,7 +34,7 @@ These are just a glimpse of the clever and cunning questions you'll encounter. T
 
 Playing "Think You're Smart?" is a breeze:
 
-1. Start the quiz by clicking .
+1. Start the quiz by clicking<a href="https://wisac.github.io/think-youre-smart-quiz/"> Play now</a>
 2. You'll face a series of questions, one at a time.
 3. Choose your answers wisely; each question is a unique challenge.
 4. Get instant feedback on your answers and keep an eye on your score.
