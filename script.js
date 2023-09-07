@@ -1,4 +1,6 @@
 "use strict";
+
+/////////////Questions
 const questions = [
     {
         question: "What are two things you can never eat for breakfast?",
@@ -70,88 +72,89 @@ const allOptionsBtn = document.querySelectorAll(".option-btn");
 const optionBox = document.querySelector(".option-box");
 const nextBtn = document.querySelector(".next-btn");
 const question = document.querySelector("#question");
+const questionIndicator = document.getElementById("questionNumber");
 let currentQuestionIndex = 0;
 let score = 0;
 
+////////////Handle option button clicks
 optionBox.addEventListener("click", function (e) {
     if (e.target.classList.contains("option-btn")) {
         disableOptions();
         let selectedOption = e.target;
         checkAnswer(selectedOption);
         showNextBtn();
-
     }
 });
 
+/////////////Handle next button clicks
+nextBtn.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length - 1) {
+        enableOptions();
+        updateQuiz();
+        nextBtn.style.display = "none";
+    }
+    else if (nextBtn.textContent == "Try again") {
+        resetQuiz();
+    }
+    else {
+        showResults();
+    }
+});
+
+/////////////Enable options so they can be clicked
 function enableOptions() {
     allOptionsBtn.forEach((btn) => {
         btn.disabled = false;
     });
 }
 
+/////////////Disable all options so they can't be clicked
 function disableOptions() {
     allOptionsBtn.forEach((btn) => {
         btn.disabled = true;
     });
 }
 
-////// Go next
-nextBtn.addEventListener("click", () => {
-    
-    if (currentQuestionIndex < questions.length - 1) {
-        enableOptions();
-        updateQuiz();
-        nextBtn.style.display = "none";
-
-    }
-    else if (nextBtn.textContent == "Try again") {
-        resetQuiz();
-    }
-        
-    else {
-        showResults();
-    }
-
-
-})
-
-
-
-///////////////Show next
+///////////////Show next button so we can go to next question
 function showNextBtn() {
     if (currentQuestionIndex == questions.length - 1) {
         nextBtn.textContent = "Finish";
         nextBtn.style.display = "inline-block";
     }
-    else if(currentQuestionIndex < questions.length - 1 && currentQuestionIndex >= 0){
+    if (
+        currentQuestionIndex < questions.length - 1 &&
+        currentQuestionIndex >= 0
+    ) {
         nextBtn.textContent = "Next";
-    nextBtn.style.display = "inline-block";
+        nextBtn.style.display = "inline-block";
     }
 }
 
-////////////Show results
+////////////Show results after quiz ends
 function showResults() {
     question.textContent = `You scored ${score} / ${questions.length}`;
     nextBtn.textContent = "Try again";
     optionBox.style.display = "none";
 
-    
+    questionIndicator.textContent = "🏁";
 }
+
+////////////Update quiz and show next question
 function updateQuiz() {
     currentQuestionIndex += 1;
     removeOptionColors();
     displayQuestion();
+}
 
-};
-
+////////////////Remove correct and wrong option colors from all buttons
 function removeOptionColors() {
     allOptionsBtn.forEach((btn) => {
         btn.classList.remove("correct");
         btn.classList.remove("wrong");
-    })
+    });
 }
 
-/////////Quiz Starter
+////////////////Quiz Starter
 function quizStart() {
     currentQuestionIndex = 0;
     score = 0;
@@ -160,7 +163,7 @@ function quizStart() {
     displayQuestion();
 }
 
-//////////quiz reset
+////////////////Quiz reseter
 function resetQuiz() {
     removeOptionColors();
     enableOptions();
@@ -168,22 +171,24 @@ function resetQuiz() {
     quizStart();
 }
 
-/////////Display Question
+///////////Display Question
 function displayQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1;
-    question.textContent = questionNum + ". " + currentQuestion.question; //Question number
+    question.textContent =  currentQuestion.question; //Question number
 
     //Display options for question
     allOptionsBtn.forEach((btn, i) => {
-        btn.textContent = currentQuestion.answers.at(i).option;
+        btn.textContent = currentQuestion.answers.at(i).option + " 🤔";
         btn.style.scale = "1";
     });
+
+    questionIndicator.textContent = questionNum + " of " + questions.length;
 }
 
 quizStart();
-// displayQuestion();
 
+//////////////////Check answer, set option colors and update score
 function checkAnswer(chosenOption) {
     let optionNum = Number(chosenOption.getAttribute("data-value"));
 
@@ -207,32 +212,6 @@ function checkAnswer(chosenOption) {
         const correctIndex = correctOptionIndex();
         allOptionsBtn[correctIndex].classList.add("correct");
         chosenOption.classList.add("wrong");
-
     }
     chosenOption.style.scale = "1.04";
-
 }
-
-//add even listener to all buttons
-//delegate the even listener by adding the listener to the buttons container
-
-//When button is clicked.
-//highlight the answer
-//show next button
-//make all buttons unclickable
-//check to see if its the correct button
-// if correct
-// update the score
-//else
-//highlight the clicked button
-
-//When next is clicked
-//show next question
-
-//when last question is reached
-//change next button to submit button
-
-//when submit button is clicked.
-//show final score and leaderboard of all 5 highscores
-//show try again button
-
