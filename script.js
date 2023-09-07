@@ -89,7 +89,7 @@ const questions = [
     },
     {
         question:
-            "What's greater than God and more evil than the devil. Rich people want it, poor people have it. And if you eat it, you'll die?",
+            "What starts with \"e\" and ends with \"e\" but only has one letter in it?",
         answers: [
             { option: "An ellipse", correct: false },
             { option: "An exclamation", correct: false },
