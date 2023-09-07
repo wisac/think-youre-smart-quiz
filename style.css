@@ -7,6 +7,7 @@
 body {
     font-family: "Poppins", sans-serif;
     background: #31441d;
+    color: #033825;
 }
 
 h1 {
@@ -31,7 +32,7 @@ h2 {
     border-top: 4px solid #0123;
     margin-top: 20px;
     padding-top: 20px;
-    background: rgba(139, 168, 139, 0.267);
+    /* background: rgba(139, 168, 139, 0.267); */
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -42,8 +43,32 @@ h2 {
 }
 
 .option-btn {
+    background: rgba(219, 239, 222, 0.383);
+    border: none;
+    box-shadow: 1px 1px 3px 1px rgba(86, 110, 82, 0.516);
     text-align: left;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
+    transition: background, translate, 0.2s ease-in-out;
+}
+
+.option-btn {
+    
+}
+
+.option-btn:hover {
+    cursor: pointer;
+    background: rgba(158, 170, 160, 0.4);
+    transform: scale(1.02) ;
+}
+
+
+
+.correct {
+    background: rgba(98, 250, 121, 0.494);
+}
+
+.wrong {
+    background: rgba(246, 100, 100, 0.4);
 }
