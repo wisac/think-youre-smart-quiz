@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #31441d;
+}
+
+h1 {
+    font-size: 1.4rem;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+.main-app {
+    width: 70vw;
+    max-width: 500px;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.question-box {
+    border-top: 4px solid #0123;
+    margin-top: 20px;
+    padding-top: 20px;
+    background: rgba(139, 168, 139, 0.267);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.option-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-btn {
+    text-align: left;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
