@@ -105,6 +105,8 @@ const question = document.querySelector("#question");
 const questionIndicator = document.getElementById("questionNumber");
 let currentQuestionIndex = 0;
 let score = 0;
+let attempts = 0;
+
 
 ////////////Handle option button clicks
 optionBox.addEventListener("click", function (e) {
@@ -165,8 +167,17 @@ function showResults() {
     question.textContent = `You scored ${score} / ${questions.length}`;
     nextBtn.textContent = "Play again";
     optionBox.style.display = "none";
+    showAttempts();
 
     questionIndicator.textContent = "🏁";
+}
+
+function showAttempts() {
+    attempts++;
+    localStorage.setItem("attempt", attempts);
+    let html = `<div>Attempts: ${attempts}</div>`
+    question.insertAdjacentHTML("beforeend", html);
+
 }
 
 
@@ -190,17 +201,20 @@ function updateQuiz() {
 function quizStart() {
     currentQuestionIndex = 0;
     score = 0;
+    let oldAttempts = +localStorage.getItem("attempt");
+    attempts = oldAttempts ? oldAttempts : 0;
     nextBtn.textContent = "Next";
     nextBtn.style.display = "none";
     displayQuestion();
 }
 
-////////////////Quiz reseter
+////////////////Quiz resetter
 function resetQuiz() {
     removeOptionColors();
     enableOptions();
     optionBox.style.display = "flex";
     quizStart();
+    console.log(attempts);
 }
 
 ///////////Display Question
