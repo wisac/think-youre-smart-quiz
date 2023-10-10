@@ -172,6 +172,7 @@ function showResults() {
     questionIndicator.textContent = "🏁";
 }
 
+////////////Show attempts
 function showAttempts() {
     attempts++;
     localStorage.setItem("attempt", attempts);
