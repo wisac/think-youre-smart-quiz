@@ -2,6 +2,7 @@
 # Think You're Smart? - Quiz Application
 
 Are you ready to put your knowledge to the test and prove that you're truly smart? Dive into the "Think You're Smart?" quiz application, where you'll face a series of thought-provoking questions that will challenge your wit and wisdom.
+<a href="https://wisac.github.io/think-youre-smart-quiz/">Play now!</a>
 
 ## Table of Contents
 
